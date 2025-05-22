@@ -16,8 +16,17 @@
 </head>
 <body>
     <header class="header">
-        <div class="container">
+        <div class="container d-flex justify-between align-center">
             <h1>簡易臉書示範</h1>
+            <nav>
+                {% if user %}
+                    <span>歡迎，{{ user.name }}</span>
+                    <a href="/logout" class="nav-link">登出</a>
+                {% else %}
+                    <a href="/login" class="nav-link">登入</a>
+                    <a href="/register" class="nav-link">註冊</a>
+                {% endif %}
+            </nav>
         </div>
     </header>
 
