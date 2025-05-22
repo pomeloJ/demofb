@@ -49,13 +49,14 @@ async def get_posts(request: Request):
     posts_list = list(posts.values())
     # Sort by created_at (newest first)
     posts_list.sort(key=lambda x: x["created_at"], reverse=True)
-    
+
     # Add author name to each post
     for post in posts_list:
         post["author_name"] = users.get(post["author_id"], {}).get("name", "未知")
-    
+
+    template_name = "posts_content.html" if request.headers.get("HX-Request") else "posts.html"
     return templates.TemplateResponse(
-        "posts.html", 
+        template_name,
         {"request": request, "posts": posts_list}
     )
 

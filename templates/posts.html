@@ -1,36 +1,5 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="form-container">
-    <h2 class="form-title">建立新貼文</h2>
-    <form hx-post="/posts/new" hx-target="#posts-list" hx-swap="afterbegin" hx-indicator="#post-indicator">
-        <div class="form-group">
-            <label for="name">你的名字：</label>
-            <input type="text" id="name" name="name" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="content">想說些什麼？</label>
-            <textarea id="content" name="content" class="form-control" required></textarea>
-        </div>
-        <button type="submit" class="btn">
-            <span class="htmx-indicator" id="post-indicator">
-                <i class="fas fa-spinner fa-spin"></i> 發佈中...
-            </span>
-            <span>發佈</span>
-        </button>
-    </form>
-</div>
-
-<h3>最新貼文</h3>
-<div id="posts-list">
-    {% for post in posts %}
-        {% include "post_item.html" %}
-    {% else %}
-        <div class="post">
-            <div class="post-content">
-                尚無貼文，快來發表第一則貼文！
-            </div>
-        </div>
-    {% endfor %}
-</div>
+{% include "posts_content.html" %}
 {% endblock %}
