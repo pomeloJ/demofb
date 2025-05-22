@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Facebook Demo</title>
+    <title>簡易臉書示範</title>
     
     <!-- HTMX Library -->
     <script src="https://unpkg.com/htmx.org@1.9.3"></script>
@@ -17,7 +17,7 @@
 <body>
     <header class="header">
         <div class="container">
-            <h1>Simple Facebook Demo</h1>
+            <h1>簡易臉書示範</h1>
         </div>
     </header>
 
@@ -25,14 +25,14 @@
         {% block content %}
         {% if redirect %}
         <div hx-get="{{ redirect }}" hx-trigger="load" hx-swap="outerHTML">
-            <p>Loading content...</p>
+            <p>載入內容中...</p>
         </div>
         {% endif %}
         {% endblock %}
     </main>
 
     <footer class="container" style="text-align: center; margin-top: 40px; padding: 20px 0; color: var(--text-light);">
-        <p>© 2025 Simple Facebook Demo - Built with FastAPI and HTMX</p>
+        <p>© 2025 簡易臉書示範 - 使用 FastAPI 與 HTMX 建立</p>
     </footer>
 </body>
 </html>
