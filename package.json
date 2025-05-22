@@ -1,0 +1,8 @@
+{
+  "name": "demofb",
+  "version": "1.0.0",
+  "description": "Demo FastAPI HTMX app",
+  "scripts": {
+    "start": "echo 'No build steps'"
+  }
+}
