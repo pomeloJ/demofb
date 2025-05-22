@@ -52,7 +52,7 @@ async def get_posts(request: Request):
     
     # Add author name to each post
     for post in posts_list:
-        post["author_name"] = users.get(post["author_id"], {}).get("name", "Unknown")
+        post["author_name"] = users.get(post["author_id"], {}).get("name", "未知")
     
     return templates.TemplateResponse(
         "posts.html", 
@@ -69,7 +69,7 @@ async def create_post(
     global next_post_id
     
     if not content.strip():
-        raise HTTPException(status_code=400, detail="Post content cannot be empty")
+        raise HTTPException(status_code=400, detail="貼文內容不能為空")
     
     # Get or create user
     user_id = get_or_create_user(name)
@@ -98,7 +98,7 @@ async def create_post(
 async def get_comments(request: Request, post_id: int):
     """Get comments for a specific post"""
     if post_id not in posts:
-        raise HTTPException(status_code=404, detail="Post not found")
+        raise HTTPException(status_code=404, detail="找不到貼文")
     
     post_comments = [c for c in comments.values() if c["post_id"] == post_id]
     # Sort by created_at
@@ -106,7 +106,7 @@ async def get_comments(request: Request, post_id: int):
     
     # Add author name to each comment
     for comment in post_comments:
-        comment["author_name"] = users.get(comment["author_id"], {}).get("name", "Unknown")
+        comment["author_name"] = users.get(comment["author_id"], {}).get("name", "未知")
     
     return templates.TemplateResponse(
         "comment_list.html", 
@@ -124,10 +124,10 @@ async def create_comment(
     global next_comment_id
     
     if post_id not in posts:
-        raise HTTPException(status_code=404, detail="Post not found")
+        raise HTTPException(status_code=404, detail="找不到貼文")
     
     if not content.strip():
-        raise HTTPException(status_code=400, detail="Comment content cannot be empty")
+        raise HTTPException(status_code=400, detail="留言內容不能為空")
     
     # Get or create user
     user_id = get_or_create_user(name)
