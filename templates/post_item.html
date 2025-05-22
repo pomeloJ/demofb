@@ -1,0 +1,24 @@
+<div class="post">
+    <div class="post-header">
+        <div class="d-flex justify-between align-center">
+            <span class="post-author">{{ post.author_name }}</span>
+            <span class="post-time">{{ post.created_at.strftime("%Y-%m-%d %H:%M") }}</span>
+        </div>
+    </div>
+    <div class="post-content">{{ post.content }}</div>
+    <div class="post-footer">
+        <button class="btn" 
+                hx-get="/posts/{{ post.id }}/comments"
+                hx-target="#comments-{{ post.id }}"
+                hx-swap="innerHTML"
+                hx-indicator="#comment-load-{{ post.id }}">
+            <span id="comment-load-{{ post.id }}" class="htmx-indicator">
+                <i class="fas fa-spinner fa-spin"></i> Loading...
+            </span>
+            <i class="far fa-comment"></i> Comments
+        </button>
+    </div>
+    <div class="comments-section" id="comments-{{ post.id }}">
+        <!-- Comments will be loaded here -->
+    </div>
+</div>

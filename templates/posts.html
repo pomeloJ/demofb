@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2 class="form-title">Create a new post</h2>
+    <form hx-post="/posts/new" hx-target="#posts-list" hx-swap="afterbegin" hx-indicator="#post-indicator">
+        <div class="form-group">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="content">What's on your mind?</label>
+            <textarea id="content" name="content" class="form-control" required></textarea>
+        </div>
+        <button type="submit" class="btn">
+            <span class="htmx-indicator" id="post-indicator">
+                <i class="fas fa-spinner fa-spin"></i> Posting...
+            </span>
+            <span>Post</span>
+        </button>
+    </form>
+</div>
+
+<h3>Recent Posts</h3>
+<div id="posts-list">
+    {% for post in posts %}
+        {% include "post_item.html" %}
+    {% else %}
+        <div class="post">
+            <div class="post-content">
+                No posts yet. Be the first to post something!
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

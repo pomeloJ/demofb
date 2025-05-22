@@ -1,0 +1,26 @@
+{% for comment in comments %}
+    {% include "comment_item.html" %}
+{% else %}
+    <div class="comment">No comments yet</div>
+{% endfor %}
+
+<!-- Comment form -->
+<div class="comment-form">
+    <form hx-post="/posts/{{ post_id }}/comments/new" 
+          hx-target="#comments-{{ post_id }}"
+          hx-swap="beforeend"
+          hx-indicator="#comment-submit-{{ post_id }}">
+        <div class="form-group">
+            <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+            <textarea name="content" class="form-control" placeholder="Write a comment..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">
+            <span class="htmx-indicator" id="comment-submit-{{ post_id }}">
+                <i class="fas fa-spinner fa-spin"></i> Sending...
+            </span>
+            <span>Comment</span>
+        </button>
+    </form>
+</div>
